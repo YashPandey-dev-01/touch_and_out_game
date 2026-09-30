@@ -1,17 +1,28 @@
 const r = require("raylib");
+const w = require("./window");
+const g = require("./ground");
 
 function running() {
   return !r.WindowShouldClose();
 }
 
-function setup() {}
+function setup() {
+  r.SetTraceLogLevel(r.LOG_NONE);
+  r.InitWindow(w.WIDTH, w.HEIGHT, w.TITLE);
+  r.SetTargetFPS(w.FPS);
+}
 
 function update() {
-  // change the state
+  g.update();
 }
 
 function draw() {
-  // draw the current state
+  r.BeginDrawing();
+  r.ClearBackground(r.WHITE);
+
+  g.draw();
+
+  r.EndDrawing();
 }
 
 function teardown() {
