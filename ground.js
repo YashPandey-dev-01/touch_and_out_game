@@ -13,7 +13,6 @@ function newVelocity() {
 }
 function update() {
   velocity = newVelocity();
-  // console.log(velocity);
   groundX = groundX - velocity;
 }
 
@@ -32,7 +31,6 @@ function nextCircleX(x, n, radius) {
 function draw(n = 0) {
   if (n === 6) {
     groundX = groundX - 1;
-    console.log(groundX);
     return;
   }
 
