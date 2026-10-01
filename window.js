@@ -1,6 +1,6 @@
 const WIDTH = 1700;
 const HEIGHT = 1045;
-const FPS = 120;
+const FPS = 60;
 const TITLE = "Game";
 
 module.exports = {

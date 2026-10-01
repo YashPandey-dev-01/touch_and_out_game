@@ -1,6 +1,6 @@
 const r = require("raylib");
-const w = require("./window");
-const g = require("./ground");
+const w = require("./window.js");
+const g = require("./PlayGround.js");
 
 function running() {
   return !r.WindowShouldClose();
