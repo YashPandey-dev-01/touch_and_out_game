@@ -1,4 +1,3 @@
-const s = require("./sketch");
 const b = require("./playerBall");
 const g = require("./playGround.js");
 const w = require("./window.js");
@@ -16,8 +15,8 @@ function isInObstYBound(n) {
     return insideTopSide && insideBottomSide;
 }
 
-function isBalltouchedObst(n = 1) {
-    while (n <= g.totalObst) {
+function isBallOverlapsObst(n = 1) {
+    while (n <= g.obst.totalObst) {
         if (isInObstXBound(n) && isInObstYBound(n)) {
             return true;
         }
@@ -35,20 +34,20 @@ function isBallOutOfBound() {
 }
 
 function isGameOver() {
-    return isBallOutOfBound() || isBalltouchedObst();
+    return isBallOutOfBound() || isBallOverlapsObst();
 }
 
 function resetGame() {
     b.ball.x = 0.3 * w.WIDTH;
     b.ball.y = 0.10 * w.HEIGHT;
     b.ball.radius = 30;
-    b.ball.velocity = 100;
+    b.ball.velocity = 20;
 
-    g.obstR.x = w.WIDTH;
-    g.obstR.y = 0;
-    g.obstR.width = 70;
-    g.obstR.height = 60;
-    g.obstR.speed = 4;
+    g.obst.x = w.WIDTH;
+    g.obst.y = 0;
+    g.obst.width = 300;
+    g.obst.height = 60;
+    g.obst.speed = 5;
 }
 
 function endScreen() {
@@ -59,8 +58,10 @@ function endScreen() {
         return resetGame();
     }
     r.BeginDrawing();
-    r.ClearBackground(r.RED);
-    r.DrawText("hello", 100, 101, 100, r.BLACK);
+    r.ClearBackground(r.BLACK);
+    r.DrawText("Game Over", 0.2 * w.WIDTH, 0.2 * w.HEIGHT, 200, r.GRAY);
+    r.DrawText("'Press Q' to quit", 0.2 * w.WIDTH, 0.6 * w.HEIGHT, 100, r.GRAY);
+    r.DrawText("'Press R' to restart", 0.2 * w.WIDTH, 0.8 * w.HEIGHT, 100, r.GRAY);
     r.EndDrawing();
     endScreen();
 }

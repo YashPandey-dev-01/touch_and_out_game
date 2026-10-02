@@ -3,9 +3,9 @@ const r = require("raylib");
 
 const ball = {
     x: 0.3 * w.WIDTH,
-    y: 0.10 * w.HEIGHT,
+    y: 0.1 * w.HEIGHT,
     radius: 30,
-    velocity: 100
+    velocity: 20
 };
 
 function updateBallPos() {

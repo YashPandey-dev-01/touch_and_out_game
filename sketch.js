@@ -8,7 +8,6 @@ function running() {
   return !r.WindowShouldClose();
 }
 
-
 function setup() {
   r.SetTraceLogLevel(r.LOG_NONE);
   r.InitWindow(w.WIDTH, w.HEIGHT, w.TITLE);
@@ -23,9 +22,11 @@ function update() {
 function draw() {
   r.BeginDrawing();
   r.ClearBackground(r.WHITE);
+
   g.draw();
   b.draw();
   if (o.isGameOver()) o.endScreen();
+
   r.EndDrawing();
 }
 
