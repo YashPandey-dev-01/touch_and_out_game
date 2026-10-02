@@ -1,12 +1,14 @@
 const r = require("raylib");
 const w = require("./window");
 
+const totalObst = 4;
+
 const obstR = {
   x: w.WIDTH,
   y: 0,
   width: 70,
-  height: 60,
-  speed: 4
+  height: 30,
+  speed: 4,
 };
 
 const allObstInfo = {};
@@ -48,11 +50,13 @@ function update() {
 }
 
 function draw() {
-  drawObstacleR(3);
+  drawObstacleR(totalObst);
 }
 
 module.exports = {
   draw,
   update,
-  allObstInfo
+  allObstInfo,
+  obstR,
+  totalObst
 };
