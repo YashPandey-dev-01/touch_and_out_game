@@ -1,6 +1,7 @@
 const r = require("raylib");
 const w = require("./window.js");
-const g = require("./PlayGround.js");
+const g = require("./playGround.js");
+const b = require("./playerBall.js");
 
 function running() {
   return !r.WindowShouldClose();
@@ -13,6 +14,7 @@ function setup() {
 }
 
 function update() {
+  b.update();
   g.update();
 }
 
@@ -20,6 +22,7 @@ function draw() {
   r.BeginDrawing();
   r.ClearBackground(r.WHITE);
 
+  b.draw();
   g.draw();
 
   r.EndDrawing();
