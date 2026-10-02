@@ -8,6 +8,14 @@ const ball = {
     velocity: 10
 };
 
+function isBallOutOfBound() {
+    const touchUp = ball.y <= 0;
+    const touchDown = ball.y + ball.radius >= w.HEIGHT;
+    const touchLeft = ball.x <= 0;
+    const touchRight = ball.x + ball.radius >= w.WIDTH;
+    return touchUp || touchDown || touchLeft || touchRight;
+}
+
 function updateBallPos() {
     ball.y = r.IsKeyPressed(r.KEY_UP) ? ball.y - ball.velocity : ball.y;
     ball.y = r.IsKeyPressed(r.KEY_DOWN) ? ball.y + ball.velocity : ball.y;
@@ -18,6 +26,7 @@ function updateBallPos() {
 
 function update() {
     updateBallPos();
+    ball.radius = isBallOutOfBound() ? 400 : ball.radius;
 }
 
 function draw() {
