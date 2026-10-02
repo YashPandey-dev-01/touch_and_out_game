@@ -7,6 +7,7 @@ function running() {
   return !r.WindowShouldClose();
 }
 
+
 function setup() {
   r.SetTraceLogLevel(r.LOG_NONE);
   r.InitWindow(w.WIDTH, w.HEIGHT, w.TITLE);
@@ -14,16 +15,16 @@ function setup() {
 }
 
 function update() {
-  b.update();
   g.update();
+  b.update();
 }
 
 function draw() {
   r.BeginDrawing();
   r.ClearBackground(r.WHITE);
 
-  b.draw();
   g.draw();
+  b.draw();
 
   r.EndDrawing();
 }

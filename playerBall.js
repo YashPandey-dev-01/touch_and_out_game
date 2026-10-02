@@ -1,17 +1,34 @@
-const w = require("./window");
+const w = require("./window.js");
 const r = require("raylib");
+const g = require("./playGround.js");
 
 const ball = {
     x: 0.3 * w.WIDTH,
     y: 0.10 * w.HEIGHT,
     radius: 30,
-    velocity: 10
+    velocity: 100
 };
 
+function isInObstXBound() {
+    const insideLeftSide = ball.x + ball.radius >= g.allObstInfo["1"].x;
+    const insideRightSide = ball.x - ball.radius <= g.allObstInfo["1"].x + g.allObstInfo["1"].width;
+    return insideLeftSide && insideRightSide;
+}
+
+function isInObstYBound() {
+    const insideTopSide = ball.y + ball.radius >= g.allObstInfo["1"].y;
+    const insideBottomSide = ball.y - ball.radius <= g.allObstInfo["1"].y + g.allObstInfo["1"].height;
+    return insideTopSide && insideBottomSide;
+}
+
+function isBalltouchedObst() {
+    return isInObstXBound() && isInObstYBound();
+}
+
 function isBallOutOfBound() {
-    const touchUp = ball.y <= 0;
+    const touchUp = ball.y - ball.radius <= 0;
     const touchDown = ball.y + ball.radius >= w.HEIGHT;
-    const touchLeft = ball.x <= 0;
+    const touchLeft = ball.x - ball.radius <= 0;
     const touchRight = ball.x + ball.radius >= w.WIDTH;
     return touchUp || touchDown || touchLeft || touchRight;
 }
@@ -27,6 +44,7 @@ function updateBallPos() {
 function update() {
     updateBallPos();
     ball.radius = isBallOutOfBound() ? 400 : ball.radius;
+    ball.radius = isBalltouchedObst() ? 400 : ball.radius;
 }
 
 function draw() {

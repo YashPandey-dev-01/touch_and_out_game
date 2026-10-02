@@ -9,6 +9,8 @@ const obstR = {
   speed: 4
 };
 
+const allObstInfo = {};
+
 function obstDimention(obstCount) {
   const x = obstR.x - 300 * obstCount;
   const y = obstR.y + obstR.height + 200 * obstCount;
@@ -26,10 +28,17 @@ function drawObstacleR(n, obstCount = 1) {
   if (n < obstCount) {
     return;
   }
+
   const newObstDimention = obstDimention(obstCount);
+
   const x = newObstDimention.x;
   const y = newObstDimention.y;
-  r.DrawRectangleGradientH(x, y, obstR.width, obstR.height, r.RED, r.BLUE);
+  const width = obstR.width;
+  const height = obstR.height;
+
+  r.DrawRectangleGradientH(x, y, width, height, r.RED, r.BLUE);
+  allObstInfo[obstCount] = { x, y, width, height };
+
   obstCount++;
   drawObstacleR(n, obstCount);
 }
@@ -44,5 +53,6 @@ function draw() {
 
 module.exports = {
   draw,
-  update
+  update,
+  allObstInfo
 };
